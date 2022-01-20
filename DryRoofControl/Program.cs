@@ -16,6 +16,8 @@ namespace DryRoofControl
 {
     class Program
     {
+        private static Config config;
+
         public class DataItem
         {
             public int time;
@@ -53,14 +55,17 @@ namespace DryRoofControl
             public double MinHour = 0;
             public double MaxMinute = 0;
             public double MinMinute = 0;
-            public int ExitAfterClose = 1;
+            public bool WaitAfterExit = false;
+            public string ProcessName;
+            public string ASCOMDriver;
+            public bool AutoOpen = false;
         }
 
         private static Config LoadConfig()
         {
             Config config = new Config();
             config.WeatherUrl = GetConfigValue("WeatherUrl", config.WeatherUrl);
-            config.ExitAfterClose = int.Parse(GetConfigValue("ExitAfterClose", config.ExitAfterClose.ToString()));
+            config.WaitAfterExit = Boolean.Parse(GetConfigValue("WaitAfterExit", "true"));
             config.MaxHumidity = Double.Parse(GetConfigValue("MaxHumidity", config.MaxHumidity.ToString()).Replace(",", Thread.CurrentThread.CurrentCulture.NumberFormat.NumberDecimalSeparator).Replace(".", Thread.CurrentThread.CurrentCulture.NumberFormat.NumberDecimalSeparator));
             config.MinHumidity = Double.Parse(GetConfigValue("MinHumidity", config.MinHumidity.ToString()).Replace(",", Thread.CurrentThread.CurrentCulture.NumberFormat.NumberDecimalSeparator).Replace(".", Thread.CurrentThread.CurrentCulture.NumberFormat.NumberDecimalSeparator));
             config.MaxCloud = Double.Parse(GetConfigValue("MaxCloud", config.MaxCloud.ToString()).Replace(",", Thread.CurrentThread.CurrentCulture.NumberFormat.NumberDecimalSeparator).Replace(".", Thread.CurrentThread.CurrentCulture.NumberFormat.NumberDecimalSeparator));
@@ -83,6 +88,9 @@ namespace DryRoofControl
             timeElements = time.Split(':');
             config.MinHour = Double.Parse(timeElements[0]);
             config.MinMinute = Double.Parse(timeElements[1]);
+            config.ProcessName = GetConfigValue("ProcessName", "Talon6_ROR");
+            config.ASCOMDriver = GetConfigValue("ASCOMDriver", "Talon6_ROR.Dome");
+            config.AutoOpen = Boolean.Parse(GetConfigValue("AutoOpen", "true"));
             return config;
         }
 
@@ -99,7 +107,7 @@ namespace DryRoofControl
 
         private static bool IsTalonLoaded()
         {
-            Process[] p = Process.GetProcessesByName(GetConfigValue("ProcessName", "Talon6_ROR"));
+            Process[] p = Process.GetProcessesByName(config.ProcessName);
             if (p.Length == 0) return false;
             return true;
         }
@@ -158,16 +166,55 @@ namespace DryRoofControl
             return Double.Parse(num);
         }
 
+        private static bool GoodWeather()
+        {
+            bool temp = true;
+
+            DataItem di = LoadSoloData(config.WeatherUrl);
+            if (di.humidity < config.MinHumidity || di.humidity > config.MaxHumidity)
+            {
+                Console.WriteLine("Bad weather (humidity). Closing roof");
+                temp = false;
+            }
+            if (di.rain < config.MinRain || di.rain > config.MaxRain)
+            {
+                Console.WriteLine("Bad weather (rain). Closing roof");
+                temp = false;
+            }
+            if (di.temperature < config.MinTemperature || di.temperature > config.MaxTemperature)
+            {
+                Console.WriteLine("Bad weather (temperature). Closing roof");
+                temp = false;
+            }
+            if (di.wind < config.MinWind || di.wind > config.MaxWind)
+            {
+                Console.WriteLine("Bad weather (wind). Closing roof");
+                temp = false;
+            }
+            if (di.gust < config.MinGust || di.gust > config.MaxGust)
+            {
+                Console.WriteLine("Bad weather (gust). Closing roof");
+                temp = false;
+            }
+            if (!di.safe)
+            {
+                Console.WriteLine("Bad weather (unsafe). Closing roof");
+                temp = false;
+            }
+            return temp;
+        }
+
         static void Main(string[] args)
         {
+            config = LoadConfig();
             if (!IsTalonLoaded())
             {
-                Console.WriteLine("Talon program not found");
+                Console.WriteLine("Roof control process not found");
             }
             else
             {
                 Console.WriteLine("Roof controller process found");
-                Dome dome = new Dome(GetConfigValue("ASCOMDriver", "Talon6_ROR.Dome"));
+                Dome dome = new Dome(config.ASCOMDriver);
                 dome.Connected = true;
                 Console.WriteLine("ASCOM roof controller connected");
                 while (dome.Connected && !System.Console.KeyAvailable)
@@ -175,63 +222,58 @@ namespace DryRoofControl
                     ShutterState shutterState = dome.ShutterStatus;
                     if (!shutterState.Equals(ShutterState.shutterOpen))
                     {
-                        Console.WriteLine("Roof not open");
+                        Console.WriteLine("Roof not open.");
+                        if (config.AutoOpen)
+                        {
+                            if (DateTime.Now < new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, (int)config.MaxHour, (int)config.MaxMinute, 0)
+                                || DateTime.Now > new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, (int)config.MinHour, (int)config.MinMinute, 0))
+                            {
+                                if (GoodWeather())
+                                {
+                                    Console.WriteLine("Opening time. Opening roof");
+                                    dome.OpenShutter();
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Weather is bad. Not opening roof.");
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine("Sleeping 60 seconds");
+                                Thread.Sleep(60000);
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Sleeping 60 seconds");
+                            Thread.Sleep(60000);
+                        }
                     }
                     else
                     {
-                        Config config = LoadConfig();
-                        DataItem di = LoadSoloData(config.WeatherUrl);
-
-                        bool close = false;
-                        if (di.humidity < config.MinHumidity || di.humidity > config.MaxHumidity)
-                        {
-                            Console.WriteLine("Bad weather (humidity). Closing roof");
-                            close = true;
-                        }
-                        if (di.rain < config.MinRain || di.rain > config.MaxRain)
-                        {
-                            Console.WriteLine("Bad weather (rain). Closing roof");
-                            close = true;
-                        }
-                        if (di.temperature < config.MinTemperature || di.temperature > config.MaxTemperature)
-                        {
-                            Console.WriteLine("Bad weather (temperature). Closing roof");
-                            close = true;
-                        }
-                        if (di.wind < config.MinWind || di.wind > config.MaxWind)
-                        {
-                            Console.WriteLine("Bad weather (wind). Closing roof");
-                            close = true;
-                        }
-                        if (di.gust < config.MinGust || di.gust > config.MaxGust)
-                        {
-                            Console.WriteLine("Bad weather (gust). Closing roof");
-                            close = true;
-                        }
-                        if (!di.safe)
-                        {
-                            Console.WriteLine("Bad weather (unsafe). Closing roof");
-                            close = true;
-                        }
+                        bool close = !GoodWeather();
                         if (DateTime.Now > new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, (int)config.MaxHour, (int)config.MaxMinute, 0)
                             || DateTime.Now < new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, (int)config.MinHour, (int)config.MinMinute, 0))
                         {
-                            Console.WriteLine("Closing time. Closing roof");
+                            Console.WriteLine("Closing time.");
                             close = true;
                         }
+
                         if (close)
                         {
                             Console.WriteLine("Closing roof");
                             dome.CloseShutter();
-                            if (config.ExitAfterClose == 1) System.Environment.Exit(0);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Sleeping 60 seconds");
+                            Thread.Sleep(60000);
                         }
                     }
-                    Console.WriteLine("Sleeping 60 seconds");
-                    Thread.Sleep(60000);
                 }
                 dome.Connected = false;
-                if (GetConfigValue("WaitAfterExit", "1") == "1")
-                    System.Console.ReadKey();
+                if (config.WaitAfterExit) System.Console.ReadKey();
             }
         }
     }
