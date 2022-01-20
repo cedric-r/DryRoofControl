@@ -257,6 +257,8 @@ namespace DryRoofControl
                                 {
                                     Console.WriteLine("Opening time. Opening roof");
                                     dome.OpenShutter();
+                                    Console.WriteLine("Sleeping 60 seconds");
+                                    Thread.Sleep(60000);
                                 }
                                 else
                                 {
@@ -289,6 +291,8 @@ namespace DryRoofControl
                         {
                             Console.WriteLine("Closing roof");
                             dome.CloseShutter();
+                            Console.WriteLine("Sleeping 60 seconds");
+                            Thread.Sleep(60000);
                         }
                         else
                         {
