@@ -22,6 +22,7 @@ AppUpdatesURL={#MyAppURL}
 DefaultDirName={pf}\{#MyAppName}
 DefaultGroupName={#MyAppName}
 LicenseFile=K:\astro\DryRoofControl\LICENSE
+OutputDir="."
 OutputBaseFilename=DryRoofControl Setup
 Compression=lzma
 SolidCompression=yes
