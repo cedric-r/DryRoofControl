@@ -99,7 +99,7 @@ namespace DryRoofControl
 
         private static bool IsTalonLoaded()
         {
-            Process[] p = Process.GetProcessesByName("Talon6_ROR");
+            Process[] p = Process.GetProcessesByName(GetConfigValue("ProcessName", "Talon6_ROR"));
             if (p.Length == 0) return false;
             return true;
         }
@@ -166,10 +166,10 @@ namespace DryRoofControl
             }
             else
             {
-                Console.WriteLine("Talon program found");
-                Dome dome = new Dome("Talon6_ROR.Dome");
+                Console.WriteLine("Roof controller process found");
+                Dome dome = new Dome(GetConfigValue("ASCOMDriver", "Talon6_ROR.Dome"));
                 dome.Connected = true;
-                Console.WriteLine("Talon connected");
+                Console.WriteLine("ASCOM roof controller connected");
                 while (dome.Connected && !System.Console.KeyAvailable)
                 {
                     ShutterState shutterState = dome.ShutterStatus;
@@ -230,7 +230,8 @@ namespace DryRoofControl
                     Thread.Sleep(60000);
                 }
                 dome.Connected = false;
-                System.Console.ReadKey();
+                if (GetConfigValue("WaitAfterExit", "1") == "1")
+                    System.Console.ReadKey();
             }
         }
     }
