@@ -61,6 +61,30 @@ namespace DryRoofControl
             public bool AutoOpen = false;
         }
 
+        private static void DisplayConfig()
+        {
+            System.Console.WriteLine("Weather URL=" + config.WeatherUrl);
+            System.Console.WriteLine("MaxHumidity=" + config.MaxHumidity);
+            System.Console.WriteLine("MinHumidity=" + config.MinHumidity);
+            System.Console.WriteLine("MaxCloud=" + config.MaxCloud);
+            System.Console.WriteLine("MinCloud=" + config.MinCloud);
+            System.Console.WriteLine("MaxRain=" + config.MaxRain);
+            System.Console.WriteLine("MinRain=" + config.MinRain);
+            System.Console.WriteLine("MaxTemperature=" + config.MaxTemperature);
+            System.Console.WriteLine("MinTemperature=" + config.MinTemperature);
+            System.Console.WriteLine("MaxWind=" + config.MaxWind);
+            System.Console.WriteLine("MinWind=" + config.MinWind);
+            System.Console.WriteLine("MaxGust=" + config.MaxGust);
+            System.Console.WriteLine("MinGust=" + config.MinGust);
+            System.Console.WriteLine("MaxLight=" + config.MaxLight);
+            System.Console.WriteLine("MinLight=" + config.MinLight);
+            System.Console.WriteLine("Max time=" + config.MaxHour+":"+ config.MaxMinute);
+            System.Console.WriteLine("Min time=" + config.MinHour + ":" + config.MinMinute);
+            System.Console.WriteLine("ProcessName=" + config.ProcessName);
+            System.Console.WriteLine("ASCOMDriver=" + config.ASCOMDriver);
+            System.Console.WriteLine("AutoOpen=" + config.AutoOpen);
+        }
+
         private static Config LoadConfig()
         {
             Config config = new Config();
@@ -207,6 +231,7 @@ namespace DryRoofControl
         static void Main(string[] args)
         {
             config = LoadConfig();
+            DisplayConfig();
             if (!IsTalonLoaded())
             {
                 Console.WriteLine("Roof control process not found");
