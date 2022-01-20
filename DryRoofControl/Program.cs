@@ -242,7 +242,8 @@ namespace DryRoofControl
                 Dome dome = new Dome(config.ASCOMDriver);
                 dome.Connected = true;
                 Console.WriteLine("ASCOM roof controller connected");
-                while (dome.Connected && !System.Console.KeyAvailable)
+                bool exit = false;
+                while (dome.Connected && !System.Console.KeyAvailable && !exit)
                 {
                     ShutterState shutterState = dome.ShutterStatus;
                     if (!shutterState.Equals(ShutterState.shutterOpen))
@@ -257,25 +258,15 @@ namespace DryRoofControl
                                 {
                                     Console.WriteLine("Opening time. Opening roof");
                                     dome.OpenShutter();
-                                    Console.WriteLine("Sleeping 60 seconds");
-                                    Thread.Sleep(60000);
                                 }
                                 else
                                 {
                                     Console.WriteLine("Weather is bad. Not opening roof.");
                                 }
                             }
-                            else
-                            {
-                                Console.WriteLine("Sleeping 60 seconds");
-                                Thread.Sleep(60000);
-                            }
                         }
-                        else
-                        {
-                            Console.WriteLine("Sleeping 60 seconds");
-                            Thread.Sleep(60000);
-                        }
+                        Console.WriteLine("Sleeping 60 seconds");
+                        Thread.Sleep(60000);
                     }
                     else
                     {
@@ -291,8 +282,7 @@ namespace DryRoofControl
                         {
                             Console.WriteLine("Closing roof");
                             dome.CloseShutter();
-                            Console.WriteLine("Sleeping 60 seconds");
-                            Thread.Sleep(60000);
+                            exit = true;
                         }
                         else
                         {
