@@ -84,7 +84,7 @@ namespace DryRoofControl
             System.Console.WriteLine("ProcessName=" + config.ProcessName);
             System.Console.WriteLine("ASCOMDriver=" + config.ASCOMDriver);
             System.Console.WriteLine("AutoOpen=" + config.AutoOpen);
-            System.Console.WriteLine("SleepTime=" + config.SleepTime+"s;);
+            System.Console.WriteLine("SleepTime=" + config.SleepTime+"s");
         }
 
         private static Config LoadConfig()
