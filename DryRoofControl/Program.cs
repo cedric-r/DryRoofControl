@@ -59,6 +59,7 @@ namespace DryRoofControl
             public string ProcessName;
             public string ASCOMDriver;
             public bool AutoOpen = false;
+            public int SleepTime = 60;
         }
 
         private static void DisplayConfig()
@@ -83,6 +84,7 @@ namespace DryRoofControl
             System.Console.WriteLine("ProcessName=" + config.ProcessName);
             System.Console.WriteLine("ASCOMDriver=" + config.ASCOMDriver);
             System.Console.WriteLine("AutoOpen=" + config.AutoOpen);
+            System.Console.WriteLine("SleepTime=" + config.SleepTime+"s;);
         }
 
         private static Config LoadConfig()
@@ -115,6 +117,7 @@ namespace DryRoofControl
             config.ProcessName = GetConfigValue("ProcessName", "Talon6_ROR");
             config.ASCOMDriver = GetConfigValue("ASCOMDriver", "Talon6_ROR.Dome");
             config.AutoOpen = Boolean.Parse(GetConfigValue("AutoOpen", "true"));
+            config.SleepTime = Int32.Parse(GetConfigValue("SleepTime", "60"));
             return config;
         }
 
@@ -265,8 +268,8 @@ namespace DryRoofControl
                                 }
                             }
                         }
-                        Console.WriteLine("Sleeping 60 seconds");
-                        Thread.Sleep(60000);
+                        Console.WriteLine("Sleeping "+ config.SleepTime + " seconds");
+                        Thread.Sleep(config.SleepTime*1000);
                     }
                     else
                     {
@@ -286,8 +289,8 @@ namespace DryRoofControl
                         }
                         else
                         {
-                            Console.WriteLine("Sleeping 60 seconds");
-                            Thread.Sleep(60000);
+                            Console.WriteLine("Sleeping "+ config.SleepTime + " seconds");
+                            Thread.Sleep(config.SleepTime*1000);
                         }
                     }
                 }
