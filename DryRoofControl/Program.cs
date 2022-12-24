@@ -203,6 +203,11 @@ namespace DryRoofControl
                 Console.WriteLine("Bad weather (humidity). Closing roof");
                 temp = false;
             }
+            if (di.cloud < config.MinCloud || di.cloud > config.MaxCloud)
+            {
+                Console.WriteLine("Bad weather (clouds). Closing roof");
+                temp = false;
+            }
             if (di.rain < config.MinRain || di.rain > config.MaxRain)
             {
                 Console.WriteLine("Bad weather (rain). Closing roof");
