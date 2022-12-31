@@ -59,6 +59,7 @@ namespace DryRoofControl
             public string ProcessName;
             public string ASCOMDriver;
             public bool AutoOpen = false;
+            public bool IgnoreCWUnsafe = true;
             public int SleepTime = 60;
         }
 
@@ -84,6 +85,7 @@ namespace DryRoofControl
             System.Console.WriteLine("ProcessName=" + config.ProcessName);
             System.Console.WriteLine("ASCOMDriver=" + config.ASCOMDriver);
             System.Console.WriteLine("AutoOpen=" + config.AutoOpen);
+            System.Console.WriteLine("IgnoreCWUnsafe=" + config.IgnoreCWUnsafe);
             System.Console.WriteLine("SleepTime=" + config.SleepTime+"s");
         }
 
@@ -106,6 +108,7 @@ namespace DryRoofControl
             config.MinGust = Double.Parse(GetConfigValue("MinGust", config.MinGust.ToString()).Replace(",", Thread.CurrentThread.CurrentCulture.NumberFormat.NumberDecimalSeparator).Replace(".", Thread.CurrentThread.CurrentCulture.NumberFormat.NumberDecimalSeparator));
             config.MaxLight = Double.Parse(GetConfigValue("MaxLight", config.MaxLight.ToString()).Replace(",", Thread.CurrentThread.CurrentCulture.NumberFormat.NumberDecimalSeparator).Replace(".", Thread.CurrentThread.CurrentCulture.NumberFormat.NumberDecimalSeparator));
             config.MinLight = Double.Parse(GetConfigValue("MinLight", config.MinLight.ToString()).Replace(",", Thread.CurrentThread.CurrentCulture.NumberFormat.NumberDecimalSeparator).Replace(".", Thread.CurrentThread.CurrentCulture.NumberFormat.NumberDecimalSeparator));
+            config.IgnoreCWUnsafe = Boolean.Parse(GetConfigValue("IgnoreCWUnsafe", "false"));
             string time = GetConfigValue("MaxHour", config.MaxHour.ToString()+":"+ config.MaxMinute.ToString()).Replace(",", Thread.CurrentThread.CurrentCulture.NumberFormat.NumberDecimalSeparator).Replace(".", Thread.CurrentThread.CurrentCulture.NumberFormat.NumberDecimalSeparator);
             string[] timeElements = time.Split(':');
             config.MaxHour = Double.Parse(timeElements[0]);
@@ -228,7 +231,7 @@ namespace DryRoofControl
                 Console.WriteLine("Bad weather (gust). Closing roof");
                 temp = false;
             }
-            if (!di.safe)
+            if (!di.safe && !config.IgnoreCWUnsafe)
             {
                 Console.WriteLine("Bad weather (unsafe). Closing roof");
                 temp = false;

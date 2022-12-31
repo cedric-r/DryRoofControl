@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "DryRoofControl"
-#define MyAppVersion "1.2.5.0"
+#define MyAppVersion "1.3.0.0"
 #define MyAppPublisher "Cedric Raguenaud"
 #define MyAppURL "https://github.com/cedric-r/DryRoofControl"
 #define MyAppExeName "DryRoofControl.exe"
