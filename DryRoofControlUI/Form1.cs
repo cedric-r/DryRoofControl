@@ -55,6 +55,7 @@ namespace DryRoofControlUI
             this.WaitAfterExitcheckBox.Checked = config.WaitAfterExit;
             this.AutoOpencheckBox.Checked = config.AutoOpen;
             this.IgnoreCWUnsafecheckBox.Checked = config.IgnoreCWUnsafe;
+            this.SafeClosecheckBox.Checked = config.SafeClose;
 
             SaveButton.Enabled = false;
         }
@@ -90,6 +91,7 @@ namespace DryRoofControlUI
                 config.WaitAfterExit = this.WaitAfterExitcheckBox.Checked;
                 config.AutoOpen = this.AutoOpencheckBox.Checked;
                 config.IgnoreCWUnsafe = this.IgnoreCWUnsafecheckBox.Checked;
+                config.SafeClose = this.SafeClosecheckBox.Checked;
                 config.Save();
                 SaveButton.Enabled = false;
             }
@@ -261,6 +263,8 @@ namespace DryRoofControlUI
                 if (!String.IsNullOrEmpty(result.Error))
                 {
                     timer1.Stop();
+                    StopButton.Enabled = false;
+                    StartButton.Enabled = true;
                     MessageBox.Show(result.Error);
                 }
             }

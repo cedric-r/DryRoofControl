@@ -89,6 +89,15 @@ namespace DryRoofControl.DryRoof
                         }
                     }
                 }
+
+                if (!String.IsNullOrEmpty(checkResult.Error) && config.SafeClose)
+                {
+                    // We had an error and the default is to close for safety
+                    Console.WriteLine("Closing roof");
+                    checkResult.Log.Add(DateTime.Now + ": Closing roof");
+                    dome.CloseShutter();
+                }
+
                 dome.Connected = false;
                 checkResult.Log.Add(DateTime.Now + ": Roof disconnected");
                 return checkResult;

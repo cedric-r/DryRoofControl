@@ -79,6 +79,7 @@
             this.StopButton = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.LogtextBox = new System.Windows.Forms.TextBox();
+            this.SafeClosecheckBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // StartButton
@@ -519,11 +520,22 @@
             this.LogtextBox.TabIndex = 57;
             this.LogtextBox.WordWrap = false;
             // 
+            // SafeClosecheckBox
+            // 
+            this.SafeClosecheckBox.AutoSize = true;
+            this.SafeClosecheckBox.Location = new System.Drawing.Point(411, 195);
+            this.SafeClosecheckBox.Name = "SafeClosecheckBox";
+            this.SafeClosecheckBox.Size = new System.Drawing.Size(76, 17);
+            this.SafeClosecheckBox.TabIndex = 58;
+            this.SafeClosecheckBox.Text = "Safe close";
+            this.SafeClosecheckBox.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(549, 450);
+            this.Controls.Add(this.SafeClosecheckBox);
             this.Controls.Add(this.LogtextBox);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.StopButton);
@@ -633,6 +645,7 @@
         private System.Windows.Forms.Button StopButton;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.TextBox LogtextBox;
+        private System.Windows.Forms.CheckBox SafeClosecheckBox;
     }
 }
 

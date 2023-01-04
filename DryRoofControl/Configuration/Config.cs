@@ -40,6 +40,7 @@ namespace DryRoofControl.Configuration
         public bool AutoOpen = false;
         public bool IgnoreCWUnsafe = true;
         public int SleepTime = 60;
+        public bool SafeClose = false;
 
         public void Save()
         {
@@ -102,6 +103,7 @@ namespace DryRoofControl.Configuration
             System.Console.WriteLine("AutoOpen=" + AutoOpen);
             System.Console.WriteLine("IgnoreCWUnsafe=" + IgnoreCWUnsafe);
             System.Console.WriteLine("SleepTime=" + SleepTime + "s");
+            System.Console.WriteLine("SafeClose=" + SafeClose);
         }
 
         public static Config LoadConfig()
@@ -136,6 +138,7 @@ namespace DryRoofControl.Configuration
             config.ASCOMDriver = GetConfigValue("ASCOMDriver", "Talon6_ROR.Dome");
             config.AutoOpen = Boolean.Parse(GetConfigValue("AutoOpen", "true"));
             config.SleepTime = Int32.Parse(GetConfigValue("SleepTime", "60"));
+            config.SafeClose = Boolean.Parse(GetConfigValue("SafeClose", "false"));
             return config;
         }
 
