@@ -2,10 +2,10 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "DryRoofControl"
-#define MyAppVersion "1.3.0.0"
+#define MyAppVersion "2.0.9.0"
 #define MyAppPublisher "Cedric Raguenaud"
 #define MyAppURL "https://github.com/cedric-r/DryRoofControl"
-#define MyAppExeName "DryRoofControl.exe"
+#define MyAppExeName "DryRoofControlUI.exe"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
@@ -34,36 +34,38 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "K:\astro\DryRoofControl\DryRoofControl\bin\Debug\DryRoofControl.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "K:\astro\DryRoofControl\DryRoofControl\bin\Debug\ASCOM.Astrometry.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "K:\astro\DryRoofControl\DryRoofControl\bin\Debug\ASCOM.Astrometry.xml"; DestDir: "{app}"; Flags: ignoreversion
-Source: "K:\astro\DryRoofControl\DryRoofControl\bin\Debug\ASCOM.Attributes.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "K:\astro\DryRoofControl\DryRoofControl\bin\Debug\ASCOM.Attributes.xml"; DestDir: "{app}"; Flags: ignoreversion
-Source: "K:\astro\DryRoofControl\DryRoofControl\bin\Debug\ASCOM.Controls.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "K:\astro\DryRoofControl\DryRoofControl\bin\Debug\ASCOM.Controls.xml"; DestDir: "{app}"; Flags: ignoreversion
-Source: "K:\astro\DryRoofControl\DryRoofControl\bin\Debug\ASCOM.DeviceInterfaces.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "K:\astro\DryRoofControl\DryRoofControl\bin\Debug\ASCOM.DeviceInterfaces.xml"; DestDir: "{app}"; Flags: ignoreversion
-Source: "K:\astro\DryRoofControl\DryRoofControl\bin\Debug\ASCOM.DriverAccess.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "K:\astro\DryRoofControl\DryRoofControl\bin\Debug\ASCOM.DriverAccess.xml"; DestDir: "{app}"; Flags: ignoreversion
-Source: "K:\astro\DryRoofControl\DryRoofControl\bin\Debug\ASCOM.Exceptions.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "K:\astro\DryRoofControl\DryRoofControl\bin\Debug\ASCOM.Exceptions.xml"; DestDir: "{app}"; Flags: ignoreversion
-Source: "K:\astro\DryRoofControl\DryRoofControl\bin\Debug\ASCOM.Internal.Extensions.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "K:\astro\DryRoofControl\DryRoofControl\bin\Debug\ASCOM.Internal.Extensions.xml"; DestDir: "{app}"; Flags: ignoreversion
-Source: "K:\astro\DryRoofControl\DryRoofControl\bin\Debug\ASCOM.SettingsProvider.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "K:\astro\DryRoofControl\DryRoofControl\bin\Debug\ASCOM.SettingsProvider.xml"; DestDir: "{app}"; Flags: ignoreversion
-Source: "K:\astro\DryRoofControl\DryRoofControl\bin\Debug\ASCOM.Utilities.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "K:\astro\DryRoofControl\DryRoofControl\bin\Debug\ASCOM.Utilities.Video.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "K:\astro\DryRoofControl\DryRoofControl\bin\Debug\ASCOM.Utilities.xml"; DestDir: "{app}"; Flags: ignoreversion
-Source: "K:\astro\DryRoofControl\DryRoofControl\bin\Debug\DryRoofControl.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "K:\astro\DryRoofControl\DryRoofControl\bin\Debug\DryRoofControl.exe.config"; DestDir: "{app}"; Flags: ignoreversion
-Source: "K:\astro\DryRoofControl\DryRoofControl\bin\Debug\System.Configuration.ConfigurationManager.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "K:\astro\DryRoofControl\DryRoofControl\bin\Debug\System.Configuration.ConfigurationManager.xml"; DestDir: "{app}"; Flags: ignoreversion
-Source: "K:\astro\DryRoofControl\DryRoofControl\bin\Debug\System.Security.AccessControl.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "K:\astro\DryRoofControl\DryRoofControl\bin\Debug\System.Security.AccessControl.xml"; DestDir: "{app}"; Flags: ignoreversion
-Source: "K:\astro\DryRoofControl\DryRoofControl\bin\Debug\System.Security.Permissions.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "K:\astro\DryRoofControl\DryRoofControl\bin\Debug\System.Security.Permissions.xml"; DestDir: "{app}"; Flags: ignoreversion
-Source: "K:\astro\DryRoofControl\DryRoofControl\bin\Debug\System.Security.Principal.Windows.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "K:\astro\DryRoofControl\DryRoofControl\bin\Debug\System.Security.Principal.Windows.xml"; DestDir: "{app}"; Flags: ignoreversion
+Source: "K:\astro\DryRoofControl\DryRoofControlUI\bin\Debug\DryRoofControlUI.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "K:\astro\DryRoofControl\DryRoofControlUI\bin\Debug\DryRoofControl.dll"; DestDir: "{app}"; Flags: ignoreversion
+;Source: "K:\astro\DryRoofControl\DryRoofControlUI\bin\Debug\ASCOM.Astrometry.dll"; DestDir: "{app}"; Flags: ignoreversion
+;Source: "K:\astro\DryRoofControl\DryRoofControlUI\bin\Debug\ASCOM.Astrometry.xml"; DestDir: "{app}"; Flags: ignoreversion
+;Source: "K:\astro\DryRoofControl\DryRoofControlUI\bin\Debug\ASCOM.Attributes.dll"; DestDir: "{app}"; Flags: ignoreversion
+;Source: "K:\astro\DryRoofControl\DryRoofControlUI\bin\Debug\ASCOM.Attributes.xml"; DestDir: "{app}"; Flags: ignoreversion
+;Source: "K:\astro\DryRoofControl\DryRoofControlUI\bin\Debug\ASCOM.Controls.dll"; DestDir: "{app}"; Flags: ignoreversion
+;Source: "K:\astro\DryRoofControl\DryRoofControlUI\bin\Debug\ASCOM.Controls.xml"; DestDir: "{app}"; Flags: ignoreversion
+Source: "K:\astro\DryRoofControl\DryRoofControlUI\bin\Debug\ASCOM.DeviceInterfaces.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "K:\astro\DryRoofControl\DryRoofControlUI\bin\Debug\ASCOM.DeviceInterfaces.xml"; DestDir: "{app}"; Flags: ignoreversion
+Source: "K:\astro\DryRoofControl\DryRoofControlUI\bin\Debug\ASCOM.DriverAccess.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "K:\astro\DryRoofControl\DryRoofControlUI\bin\Debug\ASCOM.DriverAccess.xml"; DestDir: "{app}"; Flags: ignoreversion
+Source: "K:\astro\DryRoofControl\DryRoofControlUI\bin\Debug\ASCOM.Exceptions.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "K:\astro\DryRoofControl\DryRoofControlUI\bin\Debug\ASCOM.Exceptions.xml"; DestDir: "{app}"; Flags: ignoreversion
+;Source: "K:\astro\DryRoofControl\DryRoofControlUI\bin\Debug\ASCOM.Internal.Extensions.dll"; DestDir: "{app}"; Flags: ignoreversion
+;Source: "K:\astro\DryRoofControl\DryRoofControlUI\bin\Debug\ASCOM.Internal.Extensions.xml"; DestDir: "{app}"; Flags: ignoreversion
+;Source: "K:\astro\DryRoofControl\DryRoofControlUI\bin\Debug\ASCOM.SettingsProvider.dll"; DestDir: "{app}"; Flags: ignoreversion
+;Source: "K:\astro\DryRoofControl\DryRoofControlUI\bin\Debug\ASCOM.SettingsProvider.xml"; DestDir: "{app}"; Flags: ignoreversion
+Source: "K:\astro\DryRoofControl\DryRoofControlUI\bin\Debug\ASCOM.Utilities.dll"; DestDir: "{app}"; Flags: ignoreversion
+;Source: "K:\astro\DryRoofControl\DryRoofControlUI\bin\Debug\ASCOM.Utilities.Video.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "K:\astro\DryRoofControl\DryRoofControlUI\bin\Debug\ASCOM.Utilities.xml"; DestDir: "{app}"; Flags: ignoreversion
+Source: "K:\astro\DryRoofControl\DryRoofControlUI\bin\Debug\DryRoofControlUI.exe.config"; DestDir: "{app}"; Flags: ignoreversion
+;Source: "K:\astro\DryRoofControl\DryRoofControlUI\bin\Debug\System.Configuration.ConfigurationManager.dll"; DestDir: "{app}"; Flags: ignoreversion
+;Source: "K:\astro\DryRoofControl\DryRoofControlUI\bin\Debug\System.Configuration.ConfigurationManager.xml"; DestDir: "{app}"; Flags: ignoreversion
+;Source: "K:\astro\DryRoofControl\DryRoofControlUI\bin\Debug\System.Security.AccessControl.dll"; DestDir: "{app}"; Flags: ignoreversion
+;Source: "K:\astro\DryRoofControl\DryRoofControlUI\bin\Debug\System.Security.AccessControl.xml"; DestDir: "{app}"; Flags: ignoreversion
+;Source: "K:\astro\DryRoofControl\DryRoofControlUI\bin\Debug\System.Security.Permissions.dll"; DestDir: "{app}"; Flags: ignoreversion
+;Source: "K:\astro\DryRoofControl\DryRoofControlUI\bin\Debug\System.Security.Permissions.xml"; DestDir: "{app}"; Flags: ignoreversion
+;Source: "K:\astro\DryRoofControl\DryRoofControlUI\bin\Debug\System.Security.Principal.Windows.dll"; DestDir: "{app}"; Flags: ignoreversion
+;Source: "K:\astro\DryRoofControl\DryRoofControlUI\bin\Debug\System.Security.Principal.Windows.xml"; DestDir: "{app}"; Flags: ignoreversion
+Source: "K:\astro\DryRoofControl\DryRoofControlUI\bin\Debug\Newtonsoft.Json.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "K:\astro\DryRoofControl\DryRoofControlUI\bin\Debug\Newtonsoft.Json.xml"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
