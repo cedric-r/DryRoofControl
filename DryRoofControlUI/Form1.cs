@@ -259,6 +259,15 @@ namespace DryRoofControlUI
                 count = 0;
                 progressBar1.Value = count;
                 CheckResult result = DryRoofProcess.CheckConditions(config);
+
+                HumiditytextBox.Text = result.WeatherData.humidity.ToString();
+                TemperaturetextBox.Text = result.WeatherData.temperature.ToString();
+                CloudtextBox.Text = result.WeatherData.cloud.ToString();
+                WindtextBox.Text = result.WeatherData.wind.ToString();
+                GusttextBox.Text = result.WeatherData.gust.ToString();
+                RaintextBox.Text = result.WeatherData.rain.ToString();
+                LighttextBox.Text = result.WeatherData.light.ToString();
+
                 LogtextBox.AppendText(Environment.NewLine+String.Join(Environment.NewLine, result.Log));
                 if (!String.IsNullOrEmpty(result.Error))
                 {

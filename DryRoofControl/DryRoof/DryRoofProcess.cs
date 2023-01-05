@@ -17,6 +17,7 @@ namespace DryRoofControl.DryRoof
         {
             public List<string> Log = new List<string>();
             public string Error = "";
+            public DataItem WeatherData = null;
         }
 
         public static CheckResult CheckConditions(Config config)
@@ -110,6 +111,7 @@ namespace DryRoofControl.DryRoof
 
             checkResult.Log.Add(DateTime.Now + ": Loading SOLO data");
             DataItem di = CWClient.LoadSoloData(config.WeatherUrl);
+            checkResult.WeatherData = di;
             if (!String.IsNullOrEmpty(di.Error)) checkResult.Error = di.Error;
 
             if (di.humidity < config.MinHumidity || di.humidity > config.MaxHumidity)

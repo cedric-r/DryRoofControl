@@ -80,6 +80,13 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.LogtextBox = new System.Windows.Forms.TextBox();
             this.SafeClosecheckBox = new System.Windows.Forms.CheckBox();
+            this.LighttextBox = new System.Windows.Forms.TextBox();
+            this.RaintextBox = new System.Windows.Forms.TextBox();
+            this.GusttextBox = new System.Windows.Forms.TextBox();
+            this.WindtextBox = new System.Windows.Forms.TextBox();
+            this.CloudtextBox = new System.Windows.Forms.TextBox();
+            this.TemperaturetextBox = new System.Windows.Forms.TextBox();
+            this.HumiditytextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // StartButton
@@ -177,7 +184,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(13, 368);
+            this.label9.Location = new System.Drawing.Point(13, 364);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(63, 13);
             this.label9.TabIndex = 17;
@@ -186,7 +193,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(13, 343);
+            this.label10.Location = new System.Drawing.Point(13, 339);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(53, 13);
             this.label10.TabIndex = 16;
@@ -195,7 +202,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(13, 317);
+            this.label11.Location = new System.Drawing.Point(13, 313);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(56, 13);
             this.label11.TabIndex = 15;
@@ -204,7 +211,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(13, 293);
+            this.label12.Location = new System.Drawing.Point(13, 289);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(78, 13);
             this.label12.TabIndex = 14;
@@ -276,7 +283,7 @@
             // 
             this.MaxHumiditytextBox.Location = new System.Drawing.Point(121, 35);
             this.MaxHumiditytextBox.Name = "MaxHumiditytextBox";
-            this.MaxHumiditytextBox.Size = new System.Drawing.Size(100, 20);
+            this.MaxHumiditytextBox.Size = new System.Drawing.Size(48, 20);
             this.MaxHumiditytextBox.TabIndex = 28;
             this.MaxHumiditytextBox.TextChanged += new System.EventHandler(this.MaxHumiditytextBox_TextChanged);
             // 
@@ -284,7 +291,7 @@
             // 
             this.MinHumiditytextBox.Location = new System.Drawing.Point(121, 58);
             this.MinHumiditytextBox.Name = "MinHumiditytextBox";
-            this.MinHumiditytextBox.Size = new System.Drawing.Size(100, 20);
+            this.MinHumiditytextBox.Size = new System.Drawing.Size(48, 20);
             this.MinHumiditytextBox.TabIndex = 29;
             this.MinHumiditytextBox.TextChanged += new System.EventHandler(this.MinHumiditytextBox_TextChanged);
             // 
@@ -292,7 +299,7 @@
             // 
             this.MaxTemperaturetextBox.Location = new System.Drawing.Point(121, 80);
             this.MaxTemperaturetextBox.Name = "MaxTemperaturetextBox";
-            this.MaxTemperaturetextBox.Size = new System.Drawing.Size(100, 20);
+            this.MaxTemperaturetextBox.Size = new System.Drawing.Size(48, 20);
             this.MaxTemperaturetextBox.TabIndex = 30;
             this.MaxTemperaturetextBox.TextChanged += new System.EventHandler(this.MaxTemperaturetextBox_TextChanged);
             // 
@@ -300,7 +307,7 @@
             // 
             this.MinTemperaturetextBox.Location = new System.Drawing.Point(121, 103);
             this.MinTemperaturetextBox.Name = "MinTemperaturetextBox";
-            this.MinTemperaturetextBox.Size = new System.Drawing.Size(100, 20);
+            this.MinTemperaturetextBox.Size = new System.Drawing.Size(48, 20);
             this.MinTemperaturetextBox.TabIndex = 31;
             this.MinTemperaturetextBox.TextChanged += new System.EventHandler(this.MinTemperaturetextBox_TextChanged);
             // 
@@ -308,7 +315,7 @@
             // 
             this.MaxCloudtextBox.Location = new System.Drawing.Point(121, 127);
             this.MaxCloudtextBox.Name = "MaxCloudtextBox";
-            this.MaxCloudtextBox.Size = new System.Drawing.Size(100, 20);
+            this.MaxCloudtextBox.Size = new System.Drawing.Size(48, 20);
             this.MaxCloudtextBox.TabIndex = 32;
             this.MaxCloudtextBox.TextChanged += new System.EventHandler(this.MaxCloudtextBox_TextChanged);
             // 
@@ -316,7 +323,7 @@
             // 
             this.MinCloudtextBox.Location = new System.Drawing.Point(121, 149);
             this.MinCloudtextBox.Name = "MinCloudtextBox";
-            this.MinCloudtextBox.Size = new System.Drawing.Size(100, 20);
+            this.MinCloudtextBox.Size = new System.Drawing.Size(48, 20);
             this.MinCloudtextBox.TabIndex = 33;
             this.MinCloudtextBox.TextChanged += new System.EventHandler(this.MinCloudtextBox_TextChanged);
             // 
@@ -324,7 +331,7 @@
             // 
             this.MaxWindtextBox.Location = new System.Drawing.Point(121, 174);
             this.MaxWindtextBox.Name = "MaxWindtextBox";
-            this.MaxWindtextBox.Size = new System.Drawing.Size(100, 20);
+            this.MaxWindtextBox.Size = new System.Drawing.Size(48, 20);
             this.MaxWindtextBox.TabIndex = 34;
             this.MaxWindtextBox.TextChanged += new System.EventHandler(this.MaxWindtextBox_TextChanged);
             // 
@@ -332,7 +339,7 @@
             // 
             this.MinWindtextBox.Location = new System.Drawing.Point(121, 197);
             this.MinWindtextBox.Name = "MinWindtextBox";
-            this.MinWindtextBox.Size = new System.Drawing.Size(100, 20);
+            this.MinWindtextBox.Size = new System.Drawing.Size(48, 20);
             this.MinWindtextBox.TabIndex = 35;
             this.MinWindtextBox.TextChanged += new System.EventHandler(this.MinWindtextBox_TextChanged);
             // 
@@ -340,7 +347,7 @@
             // 
             this.MaxGusttextBox.Location = new System.Drawing.Point(121, 219);
             this.MaxGusttextBox.Name = "MaxGusttextBox";
-            this.MaxGusttextBox.Size = new System.Drawing.Size(100, 20);
+            this.MaxGusttextBox.Size = new System.Drawing.Size(48, 20);
             this.MaxGusttextBox.TabIndex = 36;
             this.MaxGusttextBox.TextChanged += new System.EventHandler(this.MaxGusttextBox_TextChanged);
             // 
@@ -348,7 +355,7 @@
             // 
             this.MinGusttextBox.Location = new System.Drawing.Point(121, 242);
             this.MinGusttextBox.Name = "MinGusttextBox";
-            this.MinGusttextBox.Size = new System.Drawing.Size(100, 20);
+            this.MinGusttextBox.Size = new System.Drawing.Size(48, 20);
             this.MinGusttextBox.TabIndex = 37;
             this.MinGusttextBox.TextChanged += new System.EventHandler(this.MinGusttextBox_TextChanged);
             // 
@@ -356,31 +363,31 @@
             // 
             this.MaxRaintextBox.Location = new System.Drawing.Point(121, 264);
             this.MaxRaintextBox.Name = "MaxRaintextBox";
-            this.MaxRaintextBox.Size = new System.Drawing.Size(100, 20);
+            this.MaxRaintextBox.Size = new System.Drawing.Size(48, 20);
             this.MaxRaintextBox.TabIndex = 38;
             this.MaxRaintextBox.TextChanged += new System.EventHandler(this.MaxRaintextBox_TextChanged);
             // 
             // MinRaintextBox
             // 
-            this.MinRaintextBox.Location = new System.Drawing.Point(121, 290);
+            this.MinRaintextBox.Location = new System.Drawing.Point(121, 286);
             this.MinRaintextBox.Name = "MinRaintextBox";
-            this.MinRaintextBox.Size = new System.Drawing.Size(100, 20);
+            this.MinRaintextBox.Size = new System.Drawing.Size(48, 20);
             this.MinRaintextBox.TabIndex = 39;
             this.MinRaintextBox.TextChanged += new System.EventHandler(this.MinRaintextBox_TextChanged);
             // 
             // MaxLighttextBox
             // 
-            this.MaxLighttextBox.Location = new System.Drawing.Point(121, 314);
+            this.MaxLighttextBox.Location = new System.Drawing.Point(121, 310);
             this.MaxLighttextBox.Name = "MaxLighttextBox";
-            this.MaxLighttextBox.Size = new System.Drawing.Size(100, 20);
+            this.MaxLighttextBox.Size = new System.Drawing.Size(48, 20);
             this.MaxLighttextBox.TabIndex = 40;
             this.MaxLighttextBox.TextChanged += new System.EventHandler(this.MaxLighttextBox_TextChanged);
             // 
             // MinLighttextBox
             // 
-            this.MinLighttextBox.Location = new System.Drawing.Point(121, 340);
+            this.MinLighttextBox.Location = new System.Drawing.Point(121, 336);
             this.MinLighttextBox.Name = "MinLighttextBox";
-            this.MinLighttextBox.Size = new System.Drawing.Size(100, 20);
+            this.MinLighttextBox.Size = new System.Drawing.Size(48, 20);
             this.MinLighttextBox.TabIndex = 41;
             this.MinLighttextBox.TextChanged += new System.EventHandler(this.MinLighttextBox_TextChanged);
             // 
@@ -402,9 +409,9 @@
             // 
             // SleepTimetextBox
             // 
-            this.SleepTimetextBox.Location = new System.Drawing.Point(121, 365);
+            this.SleepTimetextBox.Location = new System.Drawing.Point(121, 361);
             this.SleepTimetextBox.Name = "SleepTimetextBox";
-            this.SleepTimetextBox.Size = new System.Drawing.Size(100, 20);
+            this.SleepTimetextBox.Size = new System.Drawing.Size(48, 20);
             this.SleepTimetextBox.TabIndex = 44;
             this.SleepTimetextBox.TextChanged += new System.EventHandler(this.SleepTimetextBox_TextChanged);
             // 
@@ -511,12 +518,12 @@
             // LogtextBox
             // 
             this.LogtextBox.AcceptsReturn = true;
-            this.LogtextBox.Location = new System.Drawing.Point(227, 222);
+            this.LogtextBox.Location = new System.Drawing.Point(229, 222);
             this.LogtextBox.Multiline = true;
             this.LogtextBox.Name = "LogtextBox";
             this.LogtextBox.ReadOnly = true;
             this.LogtextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.LogtextBox.Size = new System.Drawing.Size(284, 163);
+            this.LogtextBox.Size = new System.Drawing.Size(282, 163);
             this.LogtextBox.TabIndex = 57;
             this.LogtextBox.WordWrap = false;
             // 
@@ -530,11 +537,74 @@
             this.SafeClosecheckBox.Text = "Safe close";
             this.SafeClosecheckBox.UseVisualStyleBackColor = true;
             // 
+            // LighttextBox
+            // 
+            this.LighttextBox.Enabled = false;
+            this.LighttextBox.Location = new System.Drawing.Point(175, 310);
+            this.LighttextBox.Name = "LighttextBox";
+            this.LighttextBox.Size = new System.Drawing.Size(48, 20);
+            this.LighttextBox.TabIndex = 71;
+            // 
+            // RaintextBox
+            // 
+            this.RaintextBox.Enabled = false;
+            this.RaintextBox.Location = new System.Drawing.Point(175, 264);
+            this.RaintextBox.Name = "RaintextBox";
+            this.RaintextBox.Size = new System.Drawing.Size(48, 20);
+            this.RaintextBox.TabIndex = 69;
+            // 
+            // GusttextBox
+            // 
+            this.GusttextBox.Enabled = false;
+            this.GusttextBox.Location = new System.Drawing.Point(175, 219);
+            this.GusttextBox.Name = "GusttextBox";
+            this.GusttextBox.Size = new System.Drawing.Size(48, 20);
+            this.GusttextBox.TabIndex = 67;
+            // 
+            // WindtextBox
+            // 
+            this.WindtextBox.Enabled = false;
+            this.WindtextBox.Location = new System.Drawing.Point(175, 174);
+            this.WindtextBox.Name = "WindtextBox";
+            this.WindtextBox.Size = new System.Drawing.Size(48, 20);
+            this.WindtextBox.TabIndex = 65;
+            // 
+            // CloudtextBox
+            // 
+            this.CloudtextBox.Enabled = false;
+            this.CloudtextBox.Location = new System.Drawing.Point(175, 127);
+            this.CloudtextBox.Name = "CloudtextBox";
+            this.CloudtextBox.Size = new System.Drawing.Size(48, 20);
+            this.CloudtextBox.TabIndex = 63;
+            // 
+            // TemperaturetextBox
+            // 
+            this.TemperaturetextBox.Enabled = false;
+            this.TemperaturetextBox.Location = new System.Drawing.Point(175, 80);
+            this.TemperaturetextBox.Name = "TemperaturetextBox";
+            this.TemperaturetextBox.Size = new System.Drawing.Size(48, 20);
+            this.TemperaturetextBox.TabIndex = 61;
+            // 
+            // HumiditytextBox
+            // 
+            this.HumiditytextBox.Enabled = false;
+            this.HumiditytextBox.Location = new System.Drawing.Point(175, 35);
+            this.HumiditytextBox.Name = "HumiditytextBox";
+            this.HumiditytextBox.Size = new System.Drawing.Size(48, 20);
+            this.HumiditytextBox.TabIndex = 59;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(549, 450);
+            this.Controls.Add(this.LighttextBox);
+            this.Controls.Add(this.RaintextBox);
+            this.Controls.Add(this.GusttextBox);
+            this.Controls.Add(this.WindtextBox);
+            this.Controls.Add(this.CloudtextBox);
+            this.Controls.Add(this.TemperaturetextBox);
+            this.Controls.Add(this.HumiditytextBox);
             this.Controls.Add(this.SafeClosecheckBox);
             this.Controls.Add(this.LogtextBox);
             this.Controls.Add(this.progressBar1);
@@ -646,6 +716,13 @@
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.TextBox LogtextBox;
         private System.Windows.Forms.CheckBox SafeClosecheckBox;
+        private System.Windows.Forms.TextBox LighttextBox;
+        private System.Windows.Forms.TextBox RaintextBox;
+        private System.Windows.Forms.TextBox GusttextBox;
+        private System.Windows.Forms.TextBox WindtextBox;
+        private System.Windows.Forms.TextBox CloudtextBox;
+        private System.Windows.Forms.TextBox TemperaturetextBox;
+        private System.Windows.Forms.TextBox HumiditytextBox;
     }
 }
 
