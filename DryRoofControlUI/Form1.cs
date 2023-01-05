@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,6 +17,7 @@ namespace DryRoofControlUI
     public partial class Form1 : Form
     {
         private Config config = null;
+        private const string AppName = "DryRoofControl";
 
         public Form1()
         {
@@ -56,6 +58,8 @@ namespace DryRoofControlUI
             this.AutoOpencheckBox.Checked = config.AutoOpen;
             this.IgnoreCWUnsafecheckBox.Checked = config.IgnoreCWUnsafe;
             this.SafeClosecheckBox.Checked = config.SafeClose;
+
+            this.Text = AppName + " " + Assembly.GetExecutingAssembly().GetName().Version;
 
             SaveButton.Enabled = false;
         }
