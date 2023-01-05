@@ -23,7 +23,8 @@ namespace DryRoofControl.DryRoof
         public static CheckResult CheckConditions(Config config)
         {
             CheckResult checkResult = new CheckResult();
-            
+            bool goodWeather = DryRoofProcess.GoodWeather(config, checkResult);
+
             if (!Talon.IsTalonLoaded(config))
             {
                 Console.WriteLine("Roof control process not found");
@@ -51,7 +52,7 @@ namespace DryRoofControl.DryRoof
                             if (DateTime.Now < new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, (int)config.MaxHour, (int)config.MaxMinute, 0)
                                 || DateTime.Now > new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, (int)config.MinHour, (int)config.MinMinute, 0))
                             {
-                                if (DryRoofProcess.GoodWeather(config, checkResult))
+                                if (goodWeather)
                                 {
                                     Console.WriteLine("Opening time. Opening roof");
                                     checkResult.Log.Add(DateTime.Now + ": Opening time. Opening roof");
@@ -68,7 +69,7 @@ namespace DryRoofControl.DryRoof
                     }
                     else
                     {
-                        bool close = !DryRoofProcess.GoodWeather(config, checkResult);
+                        bool close = !goodWeather;
                         if (DateTime.Now > new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, (int)config.MaxHour, (int)config.MaxMinute, 0)
                             || DateTime.Now < new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, (int)config.MinHour, (int)config.MinMinute, 0))
                         {
