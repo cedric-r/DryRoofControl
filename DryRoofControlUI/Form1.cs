@@ -58,13 +58,15 @@ namespace DryRoofControlUI
             this.AutoOpencheckBox.Checked = config.AutoOpen;
             this.IgnoreCWUnsafecheckBox.Checked = config.IgnoreCWUnsafe;
             this.SafeClosecheckBox.Checked = config.SafeClose;
+            this.SerialPorttextBox.Text = config.SerialPort;
+            this.HowFartextBox.Text = config.HowFar.ToString();
 
             this.Text = AppName + " " + Assembly.GetExecutingAssembly().GetName().Version;
 
             SaveButton.Enabled = false;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void ReadConfig()
         {
             try
             {
@@ -96,6 +98,20 @@ namespace DryRoofControlUI
                 config.AutoOpen = this.AutoOpencheckBox.Checked;
                 config.IgnoreCWUnsafe = this.IgnoreCWUnsafecheckBox.Checked;
                 config.SafeClose = this.SafeClosecheckBox.Checked;
+                config.SerialPort = this.SerialPorttextBox.Text;
+                config.HowFar = Double.Parse(this.HowFartextBox.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ReadConfig();
                 config.Save();
                 SaveButton.Enabled = false;
             }
@@ -108,6 +124,9 @@ namespace DryRoofControlUI
         private void Exitbutton_Click(object sender, EventArgs e)
         {
             timer1.Stop();
+            if (config.SafeClose)
+                DryRoofProcess.Close(config);
+
             if (System.Windows.Forms.Application.MessageLoop)
             {
                 // WinForms app
@@ -238,6 +257,7 @@ namespace DryRoofControlUI
         private int count = 0;
         private void Startbutton_Click(object sender, EventArgs e)
         {
+            ReadConfig();
             StartButton.Enabled = false;
             StopButton.Enabled = true;
             timer1.Interval = config.SleepTime*100;
@@ -252,6 +272,7 @@ namespace DryRoofControlUI
             progressBar1.Value = 0;
             StartButton.Enabled = true;
             StopButton.Enabled = false;
+            DryRoofProcess.Disconnect();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -284,6 +305,21 @@ namespace DryRoofControlUI
                     MessageBox.Show(result.Error);
                 }
             }
+        }
+
+        private void SerialPorttextBox_TextChanged(object sender, EventArgs e)
+        {
+            SaveButton.Enabled = true;
+        }
+
+        private void HowFartextBox_TextChanged(object sender, EventArgs e)
+        {
+            SaveButton.Enabled = true;
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DryRoofProcess.Disconnect();
         }
     }
 }

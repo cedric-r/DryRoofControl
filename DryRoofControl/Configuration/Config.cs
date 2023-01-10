@@ -41,6 +41,8 @@ namespace DryRoofControl.Configuration
         public bool IgnoreCWUnsafe = true;
         public int SleepTime = 60;
         public bool SafeClose = false;
+        public string SerialPort = "";
+        public double HowFar = 0;
 
         public void Save()
         {
@@ -104,6 +106,7 @@ namespace DryRoofControl.Configuration
             System.Console.WriteLine("IgnoreCWUnsafe=" + IgnoreCWUnsafe);
             System.Console.WriteLine("SleepTime=" + SleepTime + "s");
             System.Console.WriteLine("SafeClose=" + SafeClose);
+            System.Console.WriteLine("SerialPort=" + SerialPort);
         }
 
         public static Config LoadConfig()
@@ -139,6 +142,7 @@ namespace DryRoofControl.Configuration
             config.AutoOpen = Boolean.Parse(GetConfigValue("AutoOpen", "true"));
             config.SleepTime = Int32.Parse(GetConfigValue("SleepTime", "60"));
             config.SafeClose = Boolean.Parse(GetConfigValue("SafeClose", "false"));
+            config.SerialPort = GetConfigValue("SerialPort", "");
             return config;
         }
 
